@@ -23,7 +23,7 @@ def get_config():
         "bar_empty_symbol": get_env("BAR_EMPTY_SYMBOL", "⣀"),
         "bar_filled_symbol": get_env("BAR_FILLED_SYMBOL", "⣿"),
         "bar_width": get_env("BAR_WIDTH", 20),
-        "debug": bool(get_env("DEBUG", True)),
+        "debug": bool(get_env("DEBUG", False)),
         "github_gist_id": get_env("GH_GIST_ID"),
         "github_token": get_env("GH_TOKEN"),
         "header_decoration": get_env("HEADER_DECORATION", "-"),
