@@ -37,7 +37,7 @@ def get_config():
         "lastfm_username": get_env("LASTFM_USERNAME"),
         "lines_width": get_env("LINES_WIDTH", 51),
         "plays_prefix": get_env("PLAYS_PREFIX", " "),
-        "plays_sufix": get_env("PLAYS_SUFIX", "🎵"),
+        "plays_sufix": get_env("PLAYS_SUFIX", ""),
         "plays_width": get_env("PLAYS_WIDTH", 4),
         "spaces_width": get_env("SPACES_WIDTH", 1),
     }
@@ -149,7 +149,7 @@ def build_content(top_artists: dict, total_play_count: int) -> str:
     return content
 
 
-def save_gist_content(content: str):
+def save_gist_content(content: str, description: str):
     auth = Auth.Token(config["github_token"])
     g = Github(auth=auth)
     gist = g.get_gist(id=config["github_gist_id"])
@@ -161,7 +161,7 @@ def save_gist_content(content: str):
     now = datetime.datetime.now()
 
     gist.edit(
-        description=f"music-box-py: last update at {now}",
+        description=description,
         files={filename: InputFileContent(content)},
     )
 
@@ -177,9 +177,16 @@ def main():
         header = build_header(total_play_count)
         print(header)
 
+    description = (
+        f"🎶 music box: {total_play_count} plays in the last {config['lastfm_period']}"
+    )
+
+    if config["debug"]:
+        print(description)
+
     content = build_content(top_artists, total_play_count)
 
-    save_gist_content(content)
+    save_gist_content(content, description)
 
 
 config = get_config()

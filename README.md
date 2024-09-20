@@ -24,7 +24,7 @@ You can create a local _.env_ file to help debug with these same envs.
 | `LASTFM_PERIOD` | no | variable | 7day |
 | `LINES_WIDTH` | no | variable | 51 |
 | `PLAYS_PREFIX` | no | variable | |
-| `PLAYS_SUFIX` | no | variable | 🎵 |
+| `PLAYS_SUFIX` | no | variable | |
 | `PLAYS_WIDTH` | no | variable | 4 |
 | `SPACES_WIDTH` | no | variable | 1 |
 
