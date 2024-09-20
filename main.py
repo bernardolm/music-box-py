@@ -8,8 +8,12 @@ import requests
 
 
 def get_env(key: str, default=None):
-    env = os.getenv(key)
-    return str(env) if env is not None else str(default)
+    val = os.getenv(key)
+
+    if val is None or len(val) == 0:
+        val = default
+
+    return val
 
 
 def get_config():
@@ -18,7 +22,7 @@ def get_config():
     cfg = {
         "bar_empty_symbol": get_env("BAR_EMPTY_SYMBOL", "⣀"),
         "bar_filled_symbol": get_env("BAR_FILLED_SYMBOL", "⣿"),
-        "bar_width": int(get_env("BAR_WIDTH", 20)),
+        "bar_width": get_env("BAR_WIDTH", 20),
         "debug": bool(get_env("DEBUG", True)),
         "github_gist_id": get_env("GH_GIST_ID"),
         "github_token": get_env("GH_TOKEN"),
@@ -28,21 +32,22 @@ def get_config():
             "lastfm_api_url",
             "http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&format=json",
         ),
-        "lastfm_limit": int(get_env("LASTFM_LIMIT", 10)),
+        "lastfm_limit": get_env("LASTFM_LIMIT", 10),
         "lastfm_period": get_env("LASTFM_PERIOD", "7day"),
         "lastfm_username": get_env("LASTFM_USERNAME"),
-        "lines_width": int(get_env("LINES_WIDTH", 51)),
+        "lines_width": get_env("LINES_WIDTH", 51),
         "plays_prefix": get_env("PLAYS_PREFIX", " "),
         "plays_sufix": get_env("PLAYS_SUFIX", "🎵"),
-        "plays_width": int(get_env("PLAYS_WIDTH", 4)),
-        "spaces_width": int(get_env("SPACES_WIDTH", 1)),
+        "plays_width": get_env("PLAYS_WIDTH", 4),
+        "spaces_width": get_env("SPACES_WIDTH", 1),
     }
+
+    if cfg["debug"]:
+        print("config loaded:")
+        pprint(cfg)
 
     cfg["bar_width_fraction"] = cfg["bar_width"] / 100
     cfg["space"] = " " * cfg["spaces_width"]
-
-    if cfg["debug"]:
-        pprint(cfg)
 
     return cfg
 
@@ -69,6 +74,10 @@ def build_lastfm_url() -> str:
 
 def get_top_artists() -> dict:
     url = build_lastfm_url()
+
+    if config["debug"]:
+        print(f"downloading from url: {url}")
+
     res = requests.get(url)
 
     if res.status_code != 200:
