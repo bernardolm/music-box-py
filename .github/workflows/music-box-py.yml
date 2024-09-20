@@ -1,33 +1,53 @@
-name: music-box-py
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
 on:
   schedule:
     - cron: '0 0 * * *' # daily
   push:
-    branches:
-      - master
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
 jobs:
-  musicbox:
-   runs-on: ubuntu-latest
-   steps:
-     - uses: actions/checkout@v2
-     - run: pip install -r requirements.txt
-     - name: updating top artists
-       uses: ./
-       env:
-          BAR_EMPTY_SYMBOL: ${{ vars.BAR_EMPTY_SYMBOL }}
-          BAR_FILLED_SYMBOL: ${{ vars.BAR_FILLED_SYMBOL }}
-          BAR_WIDTH: ${{ vars.BAR_WIDTH }}
-          DEBUG: ${{ vars.DEBUG }}
-          GITHUB_GIST_ID: ${{ secrets.GITHUB_GIST_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HEADER_DECORATION: ${{ vars.HEADER_DECORATION }}
-          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-          LASTFM_API_URL: ${{ vars.LASTFM_API_URL }}
-          LASTFM_LIMIT: ${{ vars.LASTFM_LIMIT }}
-          LASTFM_PERIOD: ${{ vars.LASTFM_PERIOD }}
-          LASTFM_USERNAME: ${{ secrets.LASTFM_USERNAME }}
-          LINES_WIDTH: ${{ vars.LINES_WIDTH }}
-          PLAYS_PREFIX: ${{ vars.PLAYS_PREFIX }}
-          PLAYS_SUFIX: ${{ vars.PLAYS_SUFIX }}
-          PLAYS_WIDTH: ${{ vars.PLAYS_WIDTH }}
-          SPACES_WIDTH: ${{ vars.SPACES_WIDTH }}
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Update top artists
+      run: |
+        python main.py
+      env:
+        BAR_EMPTY_SYMBOL: ${{ vars.BAR_EMPTY_SYMBOL }}
+        BAR_FILLED_SYMBOL: ${{ vars.BAR_FILLED_SYMBOL }}
+        BAR_WIDTH: ${{ vars.BAR_WIDTH }}
+        DEBUG: ${{ vars.DEBUG }}
+        GITHUB_GIST_ID: ${{ secrets.GITHUB_GIST_ID }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        HEADER_DECORATION: ${{ vars.HEADER_DECORATION }}
+        LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        LASTFM_API_URL: ${{ vars.LASTFM_API_URL }}
+        LASTFM_LIMIT: ${{ vars.LASTFM_LIMIT }}
+        LASTFM_PERIOD: ${{ vars.LASTFM_PERIOD }}
+        LASTFM_USERNAME: ${{ secrets.LASTFM_USERNAME }}
+        LINES_WIDTH: ${{ vars.LINES_WIDTH }}
+        PLAYS_PREFIX: ${{ vars.PLAYS_PREFIX }}
+        PLAYS_SUFIX: ${{ vars.PLAYS_SUFIX }}
+        PLAYS_WIDTH: ${{ vars.PLAYS_WIDTH }}
+        SPACES_WIDTH: ${{ vars.SPACES_WIDTH }}
