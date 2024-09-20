@@ -90,6 +90,7 @@ def build_header(total_play_count: int) -> str:
     header = f" {total_play_count} plays".rjust(
         config["lines_width"] - 3, config["header_decoration"]
     )
+
     return f"{header} {config['header_decoration'] * 2}"
 
 
@@ -155,6 +156,7 @@ def save_gist_content(content: str, description: str):
     gist = g.get_gist(id=config["github_gist_id"])
 
     filename = "gistfile1.txt"
+
     if gist.files is not None:
         filename = next(iter(gist.files))
 
