@@ -20,8 +20,8 @@ def get_config():
         "bar_filled_symbol": get_env("BAR_FILLED_SYMBOL", "⣿"),
         "bar_width": int(get_env("BAR_WIDTH", 20)),
         "debug": bool(get_env("DEBUG", True)),
-        "github_gist_id": get_env("GITHUB_GIST_ID"),
-        "github_token": get_env("GITHUB_TOKEN"),
+        "github_gist_id": get_env("GH_GIST_ID"),
+        "github_token": get_env("GH_TOKEN"),
         "header_decoration": get_env("HEADER_DECORATION", "-"),
         "lastfm_api_key": get_env("LASTFM_API_KEY"),
         "lastfm_api_url": get_env(
