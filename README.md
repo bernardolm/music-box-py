@@ -10,10 +10,10 @@ You can create a local _.env_ file to help debug with these same envs.
 
 | env name | required | env type | default value |
 | :--- | :---: | :---: | :--- |
-| **`GH_GIST_ID`** | **yes** | variable | |
-| **`GH_TOKEN`** | **yes** | secret | |
-| **`LASTFM_API_KEY`** | **yes** | secret | |
-| **`LASTFM_USERNAME`** | **yes** | variable | |
+| `GH_GIST_ID` | **yes** | variable | |
+| `GH_TOKEN` | **yes** | secret | |
+| `LASTFM_API_KEY` | **yes** | secret | |
+| `LASTFM_USERNAME` | **yes** | variable | |
 | `BAR_EMPTY_SYMBOL` | no | variable | ⣀ |
 | `BAR_FILLED_SYMBOL` | no | variable | ⣿ |
 | `BAR_WIDTH` | no | variable | 20 |
