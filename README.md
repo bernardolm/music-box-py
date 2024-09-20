@@ -10,7 +10,7 @@ You can create a local _.env_ file to help debug with these same envs.
 
 | env name | required | env type | default value |
 | :--- | :---: | :---: | :--- |
-| **`GH_GIST_ID`** | **yes** | secret | |
+| **`GH_GIST_ID`** | **yes** | variable | |
 | **`GH_TOKEN`** | **yes** | secret | |
 | **`LASTFM_API_KEY`** | **yes** | secret | |
 | **`LASTFM_USERNAME`** | **yes** | variable | |

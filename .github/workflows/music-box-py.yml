@@ -38,7 +38,7 @@ jobs:
         BAR_FILLED_SYMBOL: ${{ vars.BAR_FILLED_SYMBOL }}
         BAR_WIDTH: ${{ vars.BAR_WIDTH }}
         DEBUG: ${{ vars.DEBUG }}
-        GH_GIST_ID: ${{ secrets.GH_GIST_ID }}
+        GH_GIST_ID: ${{ vars.GH_GIST_ID }}
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         HEADER_DECORATION: ${{ vars.HEADER_DECORATION }}
         LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
