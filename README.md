@@ -30,4 +30,4 @@ You can create a local _.env_ file to help debug with these same envs.
 
 ## exemple
 
-You can see an example of a generated gist at <https://gist.github.com/bernardolm/0b576a668707cdc587e089c7a30f4509>
+You can see an example of a generated gist at <https://gist.github.com/bernardolm/9132eb72fc69193d357cd87a68058cd2>

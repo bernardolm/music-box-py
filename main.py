@@ -1,9 +1,8 @@
 from pprint import pprint
-import datetime
 import os
 
 from dotenv import load_dotenv
-from github import Github, Auth, InputFileContent
+from github import Github, Auth, InputFileContent, Gist, GistFile, GithubObject
 import requests
 
 
@@ -147,6 +146,9 @@ def build_content(top_artists: dict, total_play_count: int) -> str:
         if config["debug"]:
             print(line)
 
+    if content == "":
+        content = "# no scrobble found :("
+
     return content
 
 
@@ -155,16 +157,11 @@ def save_gist_content(content: str, description: str):
     g = Github(auth=auth)
     gist = g.get_gist(id=config["github_gist_id"])
 
-    filename = "gistfile1.txt"
-
-    if gist.files is not None:
-        filename = next(iter(gist.files))
-
-    now = datetime.datetime.now()
+    file_name = "gistfile1.txt"
 
     gist.edit(
         description=description,
-        files={filename: InputFileContent(content)},
+        files={file_name: InputFileContent(content)},
     )
 
     g.close()
