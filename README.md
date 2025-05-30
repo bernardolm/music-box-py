@@ -1,6 +1,6 @@
-# music-box-py
+# music-box-py 🎵🐍
 
-Save your [top listened to artists](https://www.last.fm/user/bernardolm/library/artists) 👩‍🎤 on [last.fm](https://www.last.fm/user/bernardolm) to a [gist](https://gist.github.com/bernardolm/9132eb72fc69193d357cd87a68058cd2) and pin 📌 it to your [profile](https://github.com/bernardolm) 🎵.
+Save your [top listened to artists](https://www.last.fm/user/bernardolm/library/artists) 👩‍🎤 on [last.fm](https://www.last.fm/user/bernardolm) to a [gist](https://gist.github.com/bernardolm/9132eb72fc69193d357cd87a68058cd2) and pin 📌 it to your [profile](https://github.com/bernardolm).
 
 This code was heavily inspired by [@jacc](https://github.com/jacc) repo [github.com/jacc/music-box](https://github.com/jacc/music-box) 🙏.
 
