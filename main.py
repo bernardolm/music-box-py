@@ -28,7 +28,7 @@ def get_config():
         "header_decoration": get_env("HEADER_DECORATION", "-"),
         "lastfm_api_key": get_env("LASTFM_API_KEY"),
         "lastfm_api_url": get_env(
-            "lastfm_api_url",
+            "LASTFM_API_URL",
             "http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&format=json",
         ),
         "lastfm_limit": get_env("LASTFM_LIMIT", 10),
